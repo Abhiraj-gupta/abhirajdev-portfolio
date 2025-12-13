@@ -1,8 +1,3 @@
-/**
- * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
- * for Docker builds.
- */
-await import("./src/env.js");
 import WithPWA from "next-pwa";
 
 const withPWA = WithPWA({
@@ -20,6 +15,9 @@ const withPWA = WithPWA({
 const config = withPWA({
   reactStrictMode: true,
 
+  // ✅ REQUIRED for Docker production
+  output: "standalone",
+
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.
    *
@@ -32,3 +30,4 @@ const config = withPWA({
 });
 
 export default config;
+
