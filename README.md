@@ -14,9 +14,7 @@
 - Tech: MERN Stack
 - GitHub: https://github.com/Abhiraj-gupta/ADVENTUREAWAITS
 
-## 🌐 Portfolio
-Live: (will add after deployment)
 
 ## 📫 Contact
 - GitHub: https://github.com/Abhiraj-gupta
-- LinkedIn: your-link
+- LinkedIn: https://www.linkedin.com/in/abhiraj-gupta-1b33a528a/
