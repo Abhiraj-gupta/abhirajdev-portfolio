@@ -36,7 +36,7 @@ const projects = [
   {
     title: "BlueFusion",
     description: "AI, Machine Learning, and modern software development projects.",
-    image: "/assets/BlueFusion.jpg",
+    image: "/assets/Bluefusion.jpg",
     href: "https://github.com/Abhiraj-gupta/BlueFusion",
   },
   {
