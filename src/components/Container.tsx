@@ -37,11 +37,11 @@ const variants = {
 };
 
 const navLinks = [
-  { href: "#home", text: "Home" },
-  { href: "#about", text: "About" },
-  { href: "#projects", text: "Projects" },
-  { href: "#services", text: "Services" },
-  { href: "#contact", text: "Contact" },
+  { href: "#home", text: "home" },
+  { href: "#about", text: "about" },
+  { href: "#projects", text: "projects" },
+  { href: "#services", text: "services" },
+  { href: "#contact", text: "contact" },
 ];
 
 function handleClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {

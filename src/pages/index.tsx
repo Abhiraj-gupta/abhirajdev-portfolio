@@ -28,41 +28,28 @@ import VanillaTilt from "vanilla-tilt";
 import { motion } from "framer-motion";
 
 const aboutStats = [
-  { label: "Years of experience", value: "3+" },
+  { label: "Years of experience", value: "1+" },
   { label: "Technologies mastered", value: "5+" },
-  { label: "Companies worked with", value: "15+" },
 ];
 
 const projects = [
   {
-    title: "Unqueue",
-    description: "E-commerce platform for selling digital products",
-    image: "/assets/unqueue.webm",
-    href: "https://unqueue.shop/",
+    title: "BlueFusion",
+    description: "AI, Machine Learning, and modern software development projects.",
+    image: "/assets/BlueFusion.jpg",
+    href: "https://github.com/Abhiraj-gupta/BlueFusion",
   },
   {
-    title: "InfiniteVPS",
-    description: "High performance VPS hosting solution",
-    image: "/assets/infinitevps.webm",
-    href: "#",
+    title: "Adventure Awaits",
+    description: "A smart travel planning and booking platform",
+    image: "/assets/Adventure-awaits.jpg",
+    href: "https://github.com/Abhiraj-gupta/ADVENTUREAWAITS",
   },
   {
-    title: "TranslateBot",
-    description: "Powerful Multilingual Translation Bot for Discord",
-    image: "/assets/translate_bot.webm",
-    href: "https://translatebot.app/",
-  },
-  {
-    title: "Wrona",
-    description: "Robotics-focused technology company",
-    image: "/assets/wrona.jpeg",
-    href: "https://www.wrona.com/",
-  },
-  {
-    title: "This website",
-    description: "My personal website",
-    image: "/assets/portfolio.webm",
-    href: "https://github.com/abhiraj-gupta/developer-portfolio",
+    title: "Heart Disease Predictor",
+    description: "A machine learning app for early risk prediction",
+    image: "/assets/Heart-disease-predictor.jpg",
+    href: "https://github.com/Abhiraj-gupta/Heart-Disease-Predictor",
   },
 ];
 
@@ -179,7 +166,9 @@ export default function Home() {
 
         {/* Intro */}
         <section
-          id="home"
+          id="
+          
+          "
           data-scroll-section
           className="mt-40 flex w-full flex-col items-center xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
         >
@@ -190,7 +179,7 @@ export default function Home() {
               data-scroll-speed=".09"
               className="flex flex-row items-center space-x-1.5"
             >
-              <span className={styles.pill}>next.js</span>
+              <span className={styles.pill}>MERN</span>
               <span className={styles.pill}>tailwindcss</span>
               <span className={styles.pill}>typescript</span>
             </div>
@@ -206,7 +195,7 @@ export default function Home() {
                   <br />
                 </span>
                 <span className="clash-grotesk text-gradient text-6xl 2xl:text-8xl">
-                  WendoJ.
+                  Abhiraj Gupta.
                 </span>
               </h1>
               <p
@@ -225,7 +214,7 @@ export default function Home() {
               data-scroll-speed=".06"
               className="flex flex-row items-center space-x-1.5 pt-6"
             >
-              <Link href="mailto:wendoj@proton.me" passHref>
+              <Link href="mailto:abhirajgupta06072005@gmail.com" passHref>
                 <Button>
                   Get in touch <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
@@ -275,9 +264,9 @@ export default function Home() {
                 target="_blank"
                 className="underline"
               >
-                TypeScript, Tailwind, and Next.js
+                TypeScript, Tailwind, MERN
               </Link>{" "}
-              since 2021. My experience spans from startups to mid-sized
+              since 2024. My experience spans from startups to mid-sized
               companies, where I&apos;ve been instrumental in the entire product
               design process; from ideation and wireframing, through
               prototyping, to the delivery of the final product, all while
@@ -339,7 +328,7 @@ export default function Home() {
                       <Card id="tilt">
                         <CardHeader className="p-0">
                           <Link href={project.href} target="_blank" passHref>
-                            {project.image.endsWith(".webm") ? (
+                            {project.image.endsWith(".png") ? (
                               <video
                                 src={project.image}
                                 autoPlay
@@ -446,7 +435,7 @@ export default function Home() {
               I&apos;m currently available for freelance work and open to
               discussing new projects.
             </p>
-            <Link href="mailto:wendoj@proton.me" passHref>
+            <Link href="mailto:abhirajgupta06072005@gmail.com" passHref>
               <Button className="mt-6">Get in touch</Button>
             </Link>
           </div>
