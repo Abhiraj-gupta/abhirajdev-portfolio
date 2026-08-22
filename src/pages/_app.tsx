@@ -1,4 +1,4 @@
-import { type AppType } from "next/dist/shared/lib/utils";
+import { type AppProps } from "next/app";
 
 import "@/styles/globals.css";
 import "@/styles/locomotive-scroll.css";
@@ -10,7 +10,7 @@ const dmSans = DM_Sans({
   subsets: ["latin"],
 });
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <div lang={"en"} className={dmSans.className}>
       <Component {...pageProps} />

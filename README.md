@@ -9,11 +9,25 @@
 - Tools: Git, Docker, GitHub
 
 ## 📌 Featured Projects
-### Adventure Awaits
-- Travel planning app with booking & budget planner
-- Tech: MERN Stack
-- GitHub: https://github.com/Abhiraj-gupta/ADVENTUREAWAITS
+### BlueFusion
+- AI, Machine Learning, and modern software development projects.
+- GitHub: https://github.com/Abhiraj-gupta/BluefusionF
 
+### Amazon Clone
+- An Amazon-inspired e-commerce clone with a rule-based AI chatbot.
+- Live: https://abhiraj-amazon-clone.vercel.app/
+
+### CareSync
+- A healthcare backend platform for care coordination and patient management.
+- GitHub: https://github.com/Abhiraj-gupta/CareSync-Healthcare-Backend
+
+### Android Malware Detection Research
+- IEEE-style research paper on Android malware detection using the MH-100K dataset.
+- GitHub: https://github.com/Abhiraj-gupta
+
+### Heart Disease Predictor
+- A machine learning app for early risk prediction
+- GitHub: https://github.com/Abhiraj-gupta/Heart-Disease-Predictor
 
 ## 📫 Contact
 - GitHub: https://github.com/Abhiraj-gupta

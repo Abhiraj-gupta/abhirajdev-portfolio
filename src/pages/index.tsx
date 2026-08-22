@@ -2,14 +2,7 @@ import Container from "@/components/Container";
 import { useEffect, useRef, Suspense, useState } from "react";
 import styles from "@/styles/Home.module.css";
 import { Button } from "@/components/ui/button";
-import {
-  ChevronRight,
-  Code2,
-  Frame,
-  SearchCheck,
-  Eye,
-  MonitorSmartphone,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
@@ -25,64 +18,31 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import VanillaTilt from "vanilla-tilt";
-import { motion } from "framer-motion";
+import { projects } from "@/data/projects";
+import SectionReveal from "@/components/SectionReveal";
+import SkillsGraph from "@/components/SkillsGraph";
 
-const aboutStats = [
-  { label: "Years of experience", value: "1+" },
-  { label: "Technologies mastered", value: "5+" },
-];
-
-const projects = [
+const aboutTiles = [
   {
-    title: "BlueFusion",
-    description: "AI, Machine Learning, and modern software development projects.",
-    image: "/assets/Bluefusion.jpg",
-    href: "https://github.com/Abhiraj-gupta/BlueFusion",
+    kind: "focus" as const,
+    title: "Currently building",
+    body: "Healthcare backends, ML risk models, and AI-assisted product surfaces — the overlap of full-stack, security, and applied machine learning.",
   },
   {
-    title: "Adventure Awaits",
-    description: "A smart travel planning and booking platform",
-    image: "/assets/Adventure-awaits.jpg",
-    href: "https://github.com/Abhiraj-gupta/ADVENTUREAWAITS",
+    kind: "stat" as const,
+    label: "Years of experience",
+    value: "1+",
   },
   {
-    title: "Heart Disease Predictor",
-    description: "A machine learning app for early risk prediction",
-    image: "/assets/Heart-disease-predictor.jpg",
-    href: "https://github.com/Abhiraj-gupta/Heart-Disease-Predictor",
-  },
-];
-
-const services = [
-  {
-    service: "Frontend Development",
-    description:
-      "Creating stellar user interfaces and web experiences using the latest technologies.",
-    icon: Code2,
+    kind: "stat" as const,
+    label: "Technologies mastered",
+    value: "5+",
   },
   {
-    service: "UX Design",
-    description:
-      "Building intuitive, user-centric designs that drive engagement and conversion.",
-    icon: Frame,
-  },
-  {
-    service: "SEO Optimization",
-    description:
-      "Enhancing your website's visibility in search engines for increased organic traffic.",
-    icon: SearchCheck,
-  },
-  {
-    service: "Responsive Design",
-    description:
-      "Designing websites that look and perform equally well on all devices and screen sizes.",
-    icon: MonitorSmartphone,
-  },
-  {
-    service: "Backend Development",
-    description:
-      "Developing robust, scalable server-side logic for a wide range of web applications.",
-    icon: Eye,
+    kind: "stat" as const,
+    label: "Research focus",
+    value: "IEEE",
+    detail: "Android malware detection, MH-100K",
   },
 ];
 
@@ -122,7 +82,6 @@ export default function Home() {
 
         if (li.getAttribute("href") === `#${current}`) {
           li.classList.add("nav-active");
-          console.log(li.getAttribute("href"));
         }
       });
     }
@@ -166,9 +125,7 @@ export default function Home() {
 
         {/* Intro */}
         <section
-          id="
-          
-          "
+          id="home"
           data-scroll-section
           className="mt-40 flex w-full flex-col items-center xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
         >
@@ -257,36 +214,60 @@ export default function Home() {
             data-scroll-position="top"
             className="my-14 flex max-w-6xl flex-col justify-start space-y-10"
           >
-            <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
-              I&apos;m an experienced full-stack developer proficient in{" "}
-              <Link
-                href="https://create.t3.gg/"
-                target="_blank"
-                className="underline"
-              >
-                TypeScript, Tailwind, MERN
-              </Link>{" "}
-              since 2024. My experience spans from startups to mid-sized
-              companies, where I&apos;ve been instrumental in the entire product
-              design process; from ideation and wireframing, through
-              prototyping, to the delivery of the final product, all while
-              efficiently collaborating with cross-functional teams.
-            </h2>
-            <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
-              {aboutStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col items-center text-center xl:items-start xl:text-start"
+            <SectionReveal>
+              <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
+                I&apos;m an experienced full-stack developer proficient in{" "}
+                <Link
+                  href="https://create.t3.gg/"
+                  target="_blank"
+                  className="underline"
                 >
-                  <span className="clash-grotesk text-gradient text-4xl font-semibold tracking-tight xl:text-6xl">
-                    {stat.value}
-                  </span>
-                  <span className="tracking-tight text-muted-foreground xl:text-lg">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+                  TypeScript, Tailwind, MERN
+                </Link>{" "}
+                since 2024. My experience spans from startups to mid-sized
+                companies, where I&apos;ve been instrumental in the entire product
+                design process; from ideation and wireframing, through
+                prototyping, to the delivery of the final product, all while
+                efficiently collaborating with cross-functional teams.
+              </h2>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+                {aboutTiles.map((tile) =>
+                  tile.kind === "focus" ? (
+                    <div
+                      key={tile.title}
+                      className="rounded-md bg-white/5 p-6 shadow-md backdrop-blur md:col-span-2 md:row-span-2 md:p-8"
+                    >
+                      <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                        now
+                      </span>
+                      <h3 className="clash-grotesk text-gradient mt-3 text-3xl font-semibold tracking-tight xl:text-5xl">
+                        {tile.title}
+                      </h3>
+                      <p className="mt-4 max-w-md tracking-tight text-muted-foreground xl:text-lg">
+                        {tile.body}
+                      </p>
+                    </div>
+                  ) : (
+                    <div
+                      key={tile.label}
+                      className="flex flex-col justify-center rounded-md bg-white/5 p-6 shadow-md backdrop-blur md:col-span-2"
+                    >
+                      <span className="clash-grotesk text-gradient text-4xl font-semibold tracking-tight xl:text-6xl">
+                        {tile.value}
+                      </span>
+                      <span className="tracking-tight text-muted-foreground xl:text-lg">
+                        {tile.label}
+                      </span>
+                      {"detail" in tile && tile.detail ? (
+                        <span className="mt-1 font-mono text-xs text-muted-foreground">
+                          {tile.detail}
+                        </span>
+                      ) : null}
+                    </div>
+                  ),
+                )}
+              </div>
+            </SectionReveal>
           </div>
         </section>
 
@@ -308,16 +289,18 @@ export default function Home() {
             </div>
           </div>
           <div data-scroll data-scroll-speed=".4" className="my-64">
-            <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
-              ✨ Projects
-            </span>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
-              Streamlined digital experiences.
-            </h2>
-            <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;ve worked on a variety of projects, from small websites to
-              large-scale web applications. Here are some of my favorites:
-            </p>
+            <SectionReveal>
+              <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
+                ✨ Projects
+              </span>
+              <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
+                Streamlined digital experiences.
+              </h2>
+              <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
+                I&apos;ve worked on a variety of projects, from small websites to
+                large-scale web applications. Here are some of my favorites:
+              </p>
+            </SectionReveal>
 
             {/* Carousel */}
             <div className="mt-14">
@@ -325,27 +308,30 @@ export default function Home() {
                 <CarouselContent>
                   {projects.map((project) => (
                     <CarouselItem key={project.title} className="md:basis-1/2">
-                      <Card id="tilt">
+                      <Card id="tilt" className="group relative overflow-hidden">
                         <CardHeader className="p-0">
                           <Link href={project.href} target="_blank" passHref>
-                            {project.image.endsWith(".png") ? (
-                              <video
-                                src={project.image}
-                                autoPlay
-                                loop
-                                muted
-                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
-                              />
-                            ) : (
-                              <Image
-                                src={project.image}
-                                alt={project.title}
-                                width={600}
-                                height={300}
-                                quality={100}
-                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
-                              />
-                            )}
+                            <div className="project-scan relative overflow-hidden rounded-t-md">
+                              {project.image.endsWith(".png") ? (
+                                <video
+                                  src={project.image}
+                                  autoPlay
+                                  loop
+                                  muted
+                                  className="aspect-video h-full w-full bg-primary object-cover"
+                                />
+                              ) : (
+                                <Image
+                                  src={project.image}
+                                  alt={project.title}
+                                  width={600}
+                                  height={300}
+                                  quality={100}
+                                  className="aspect-video h-full w-full bg-primary object-cover"
+                                />
+                              )}
+                              <span className="project-scan-line" />
+                            </div>
                           </Link>
                         </CardHeader>
                         <CardContent className="absolute bottom-0 w-full bg-background/50 backdrop-blur">
@@ -378,16 +364,7 @@ export default function Home() {
             data-scroll-position="top"
             className="my-24 flex flex-col justify-start space-y-10"
           >
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 1,
-                staggerChildren: 0.5,
-              }}
-              viewport={{ once: true }}
-              className="grid items-center gap-1.5 md:grid-cols-2 xl:grid-cols-3"
-            >
+            <SectionReveal className="grid items-center gap-1.5 md:grid-cols-2 xl:grid-cols-3">
               <div className="flex flex-col py-6 xl:p-6">
                 <h2 className="text-4xl font-medium tracking-tight">
                   Need more info?
@@ -397,48 +374,37 @@ export default function Home() {
                   </span>
                 </h2>
                 <p className="mt-2 tracking-tighter text-secondary-foreground">
-                  Here are some of the services I offer. If you have any
-                  questions, feel free to reach out.
+                  These three practices meet in the same workflow — research,
+                  secure systems, and shipped product.
                 </p>
               </div>
-              {services.map((service) => (
-                <div
-                  key={service.service}
-                  className="flex flex-col items-start rounded-md bg-white/5 p-14 shadow-md backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:shadow-md"
-                >
-                  <service.icon className="my-6 text-primary" size={20} />
-                  <span className="text-lg tracking-tight text-foreground">
-                    {service.service}
-                  </span>
-                  <span className="mt-2 tracking-tighter text-muted-foreground">
-                    {service.description}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
+              <SkillsGraph />
+            </SectionReveal>
           </div>
         </section>
 
         {/* Contact */}
         <section id="contact" data-scroll-section className="my-64">
-          <div
-            data-scroll
-            data-scroll-speed=".4"
-            data-scroll-position="top"
-            className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-br from-primary/[6.5%] to-white/5 px-8 py-16 text-center xl:py-24"
-          >
-            <h2 className="text-4xl font-medium tracking-tighter xl:text-6xl">
-              Let&apos;s work{" "}
-              <span className="text-gradient clash-grotesk">together.</span>
-            </h2>
-            <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;m currently available for freelance work and open to
-              discussing new projects.
-            </p>
-            <Link href="mailto:abhirajgupta06072005@gmail.com" passHref>
-              <Button className="mt-6">Get in touch</Button>
-            </Link>
-          </div>
+          <SectionReveal>
+            <div
+              data-scroll
+              data-scroll-speed=".4"
+              data-scroll-position="top"
+              className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-br from-primary/[6.5%] to-white/5 px-8 py-16 text-center xl:py-24"
+            >
+              <h2 className="text-4xl font-medium tracking-tighter xl:text-6xl">
+                Let&apos;s work{" "}
+                <span className="text-gradient clash-grotesk">together.</span>
+              </h2>
+              <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
+                I&apos;m currently available for freelance work and open to
+                discussing new projects.
+              </p>
+              <Link href="mailto:abhirajgupta06072005@gmail.com" passHref>
+                <Button className="mt-6">Get in touch</Button>
+              </Link>
+            </div>
+          </SectionReveal>
         </section>
       </div>
     </Container>

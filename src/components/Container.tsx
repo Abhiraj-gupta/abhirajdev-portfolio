@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
 import Preloader from "@/components/Preloader";
+import CommandPalette from "@/components/CommandPalette";
 import styles from "@/styles/Container.module.css";
 
 type IconProps = {
@@ -178,6 +179,9 @@ export default function Container(props: ContainerProps) {
               className="text-base"
             />
           ))}
+          <li className="flex items-center">
+            <CommandPalette />
+          </li>
         </ul>
 
         {/* Mobile menu */}

@@ -107,4 +107,34 @@
   .animate-blink {
     animation: blink 1s infinite;
   }
+
+  /* Sweeps top -> bottom once per hover-enter. Uses `top` rather than a
+     fixed translateY so the sweep tracks the image height at any breakpoint. */
+  @keyframes project-scan {
+    from {
+      top: 0;
+      opacity: 0.95;
+    }
+    to {
+      top: 100%;
+      opacity: 0.15;
+    }
+  }
+
+  .project-scan-line {
+    @apply pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0;
+    box-shadow: 0 0 12px 1px hsl(var(--primary) / 0.55);
+  }
+
+  .group:hover .project-scan-line {
+    animation: project-scan 700ms ease-out 1;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .group:hover .project-scan-line {
+      animation: none;
+      opacity: 0;
+    }
+  }
 }

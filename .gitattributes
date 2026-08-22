@@ -1,0 +1,43 @@
+# Normalize line endings so a Windows checkout cannot rewrite every file.
+#
+# Without this, an editor or tool converting the working tree to CRLF makes git
+# report all ~32 tracked files as modified, burying real changes in whitespace
+# churn. Text files are stored and checked out as LF; binaries are left alone.
+
+* text=auto eol=lf
+
+# Explicitly text
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.js    text eol=lf
+*.cjs   text eol=lf
+*.mjs   text eol=lf
+*.json  text eol=lf
+*.css   text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.html  text eol=lf
+*.txt   text eol=lf
+*.conf  text eol=lf
+Dockerfile      text eol=lf
+.gitignore      text eol=lf
+.dockerignore   text eol=lf
+.env.example    text eol=lf
+
+# Binary assets - never touch these
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.pdf   binary
+*.splinecode binary
+
+# Generated - keep out of diffs and language stats
+pnpm-lock.yaml linguist-generated=true -diff
