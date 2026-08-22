@@ -1,140 +1,206 @@
-@import "clash-grotesk.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------------
+   Design tokens
+
+   Two sets: light (default) and dark (.dark on <html>). The redesign
+   palette uses space-separated RGB channels so Tailwind opacity modifiers
+   work. The shadcn HSL tokens below it are retained and retuned to light
+   because src/components/ui/* still reference them.
+   --------------------------------------------------------------------- */
 @layer base {
   :root {
-    --background: 240 27.9% 5.7%;
-    --foreground: 210 40% 98%;
+    /* redesign palette */
+    --bone: 244 242 236;
+    --bone-2: 234 231 223;
+    --ink: 17 17 16;
+    --body: 63 62 59;
+    --mute: 140 139 134;
+    --rule: 213 210 202;
+    --live: 16 185 129;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    /* shadcn tokens, retuned light */
+    --background: 45 24% 94%;
+    --foreground: 60 3% 6%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --card: 45 24% 94%;
+    --card-foreground: 60 3% 6%;
 
-    --primary: 237 99% 74%;
-    --primary-foreground: 0 0% 0%;
+    --popover: 45 24% 94%;
+    --popover-foreground: 60 3% 6%;
 
-    --secondary: 214.2 98.47% 74.31%;
-    --secondary-foreground: 218 11% 65%;
+    --primary: 60 3% 6%;
+    --primary-foreground: 45 24% 94%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --secondary: 42 15% 90%;
+    --secondary-foreground: 60 3% 6%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --muted: 42 15% 90%;
+    --muted-foreground: 45 4% 54%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 42 15% 90%;
+    --accent-foreground: 60 3% 6%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 45 24% 94%;
+
+    --border: 42 14% 81%;
+    --input: 42 14% 81%;
+    --ring: 60 3% 6%;
 
     --radius: 0.5rem;
   }
+
+  .dark {
+    --bone: 14 14 13;
+    --bone-2: 26 26 24;
+    --ink: 244 242 236;
+    --body: 190 188 181;
+    --mute: 122 121 117;
+    --rule: 42 42 39;
+    --live: 16 185 129;
+
+    --background: 60 4% 5%;
+    --foreground: 45 24% 94%;
+
+    --card: 60 4% 5%;
+    --card-foreground: 45 24% 94%;
+
+    --popover: 60 4% 5%;
+    --popover-foreground: 45 24% 94%;
+
+    --primary: 45 24% 94%;
+    --primary-foreground: 60 4% 5%;
+
+    --secondary: 60 4% 10%;
+    --secondary-foreground: 45 24% 94%;
+
+    --muted: 60 4% 10%;
+    --muted-foreground: 45 3% 47%;
+
+    --accent: 60 4% 10%;
+    --accent-foreground: 45 24% 94%;
+
+    --border: 60 4% 16%;
+    --input: 60 4% 16%;
+    --ring: 45 24% 94%;
+  }
 }
 
-/* global elements */
+/* ------------------------------------------------------------------------
+   Base elements
+   --------------------------------------------------------------------- */
 @layer base {
-  html[data-scroll-orientation="horizontal"] {
-    body {
-      @apply w-fit;
-    }
-    [data-scroll-container] {
-      @apply flex;
-    }
-  }
   * {
     @apply border-border;
   }
+
   html {
     @apply antialiased;
+    /* Native scrolling. Locomotive Scroll is deliberately not used on the
+       redesign: it virtualises scroll position, which breaks Framer
+       Motion's useScroll — and the scroll-linked marquee and the project
+       scrubber both depend on it. */
+    scroll-behavior: smooth;
   }
+
   body {
-    @apply bg-background text-foreground cursor-wait;
+    @apply bg-bone font-sans text-body;
+    /* Slightly open body tracking to offset the tight display face. */
+    letter-spacing: -0.005em;
   }
+
   section {
-    scroll-margin-top: 60px;
-  }
-}
-
-/* custom scrollbar */
-@layer base {
-  ::-webkit-scrollbar {
-    @apply h-2.5 w-2 transition;
-  }
-  ::-webkit-scrollbar-track {
-    @apply bg-background;
-  }
-  ::-webkit-scrollbar-thumb {
-    @apply bg-muted;
-  }
-  ::-webkit-scrollbar-thumb:active {
-    @apply bg-primary;
-  }
-}
-
-/* custom styles */
-@layer base {
-  .clash-grotesk {
-    font-family: "ClashGrotesk-Variable", sans-serif;
-  }
-  .text-gradient {
-    @apply bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent;
-  }
-  .nav-active {
-    color: rgb(226 232 240) !important;
-    @apply text-sm lowercase tracking-tight text-slate-200;
-  }
-  .nav-link {
-    /* Remove the styles from nav-link class */
-    @apply text-sm lowercase tracking-tight text-slate-400;
+    scroll-margin-top: 96px;
   }
 
-  /* blinking animation */
-  @keyframes blink {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  .animate-blink {
-    animation: blink 1s infinite;
+  ::selection {
+    @apply bg-ink text-bone;
   }
 
-  /* Sweeps top -> bottom once per hover-enter. Uses `top` rather than a
-     fixed translateY so the sweep tracks the image height at any breakpoint. */
-  @keyframes project-scan {
-    from {
-      top: 0;
-      opacity: 0.95;
-    }
-    to {
-      top: 100%;
-      opacity: 0.15;
-    }
-  }
-
-  .project-scan-line {
-    @apply pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0;
-    box-shadow: 0 0 12px 1px hsl(var(--primary) / 0.55);
-  }
-
-  .group:hover .project-scan-line {
-    animation: project-scan 700ms ease-out 1;
-    opacity: 1;
+  /* Visible keyboard focus everywhere, without showing rings on mouse
+     clicks. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ink ring-offset-2 ring-offset-bone;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .group:hover .project-scan-line {
-      animation: none;
-      opacity: 0;
+    html {
+      scroll-behavior: auto;
     }
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Scrollbar — thin and neutral so it does not fight the bone ground
+   --------------------------------------------------------------------- */
+@layer base {
+  ::-webkit-scrollbar {
+    @apply h-1.5 w-1.5;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-rule;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-mute;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Reusable primitives from the reference design
+   --------------------------------------------------------------------- */
+@layer components {
+  /* Page gutter. Every section uses this so the vertical rhythm of the
+     left edge stays exact. */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-14;
+  }
+
+  /* Wide-tracked uppercase mono label — the reference uses this for every
+     small piece of text. */
+  .label {
+    @apply font-mono text-label uppercase text-mute;
+  }
+  .label-ink {
+    @apply font-mono text-label uppercase text-ink;
+  }
+
+  /* Outlined pill, used for tech tags and the open-for-work badge. */
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-rule px-4 py-2 font-mono text-label-sm uppercase text-body transition-colors;
+  }
+  .pill-interactive {
+    @apply hover:border-ink hover:text-ink;
+  }
+
+  /* Solid action button (VIEW ALL). */
+  .btn-solid {
+    @apply inline-flex items-center justify-center gap-3 rounded-none bg-ink px-8 py-4 font-mono text-label-sm uppercase text-bone transition-opacity hover:opacity-80;
+  }
+
+  /* Outlined action button (SELECTED WORK). */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-3 rounded-full border border-rule bg-bone px-6 py-3 font-mono text-label-sm uppercase text-ink transition-colors hover:border-ink;
+  }
+
+  /* Eyebrow label with a hairline rule running off to the right, as used
+     above the ABOUT and SELECTED PROJECTS headings. */
+  .eyebrow {
+    @apply flex items-center gap-6;
+  }
+  .eyebrow::after {
+    content: "";
+    @apply h-px flex-1 bg-rule;
+  }
+
+  /* Small L-shaped corner bracket used on the hero image and the project
+     panel. Purely decorative. */
+  .bracket {
+    @apply pointer-events-none absolute h-4 w-4 border-ink/40;
   }
 }

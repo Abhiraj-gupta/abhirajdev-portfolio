@@ -9,3 +9,9 @@ build
 
 # typescript incremental build cache
 tsconfig.tsbuildinfo
+
+# pre-redesign snapshot of files this rebuild overwrites
+.backup-pre-redesign/
+
+# throwaway server-rendered previews (see REDESIGN-NOTES.md)
+.preview/
